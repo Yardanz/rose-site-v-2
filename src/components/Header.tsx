@@ -13,6 +13,7 @@ export default function Header() {
     { href: "/faq", label: "FAQ" },
     { href: "/reputation", label: "Reputation" },
   ];
+  const mobileItems = [...navItems, { href: "/order", label: "Order" }];
 
   return (
     <header className="border-b border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur">
@@ -65,6 +66,34 @@ export default function Header() {
           </Button>
         </div>
       </div>
+
+      <nav className="md:hidden">
+        <div className="mx-auto w-full max-w-6xl px-4 pb-4">
+          <div className="flex items-center gap-2 overflow-x-auto rounded-2xl border border-[var(--border)] bg-black/20 p-2 text-sm">
+            {mobileItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={[
+                    "whitespace-nowrap rounded-xl px-3 py-2 transition",
+                    isActive
+                      ? "bg-white/10 text-[var(--text)] shadow-[0_0_16px_rgba(216,179,86,0.25)]"
+                      : "text-[var(--muted)]/80 hover:text-[var(--text)]",
+                    item.href === "/order"
+                      ? "border border-[var(--gold)]/40 text-[var(--text)]"
+                      : "border border-transparent",
+                  ].join(" ")}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
     </header>
   );
 }
