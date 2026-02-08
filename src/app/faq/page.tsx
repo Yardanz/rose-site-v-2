@@ -77,7 +77,7 @@ export default function FaqPage() {
           <p className="text-sm text-[var(--muted)]">
             Still have questions? Send your image and I’ll reply on Discord.
           </p>
-          <Button asChild>
+          <Button asChild className="w-full text-center sm:w-auto">
             <a href="/order">Order</a>
           </Button>
         </div>

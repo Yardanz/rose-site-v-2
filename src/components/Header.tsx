@@ -13,7 +13,7 @@ export default function Header() {
     { href: "/faq", label: "FAQ" },
     { href: "/reputation", label: "Reputation" },
   ];
-  const mobileItems = [...navItems, { href: "/order", label: "Order" }];
+  const mobileItems = navItems;
 
   return (
     <header className="border-b border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur">
