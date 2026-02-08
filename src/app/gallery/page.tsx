@@ -110,44 +110,43 @@ export default function GalleryPage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-16">
       <section>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">Gallery</h1>
-            <p className="mt-2 text-sm text-[var(--muted)]">
+            <h1 className="text-2xl font-semibold sm:text-3xl">Gallery</h1>
+            <p className="mt-1 max-w-[28rem] text-xs text-[var(--muted)]/80 sm:mt-2 sm:text-sm sm:text-[var(--muted)]">
               A curated showcase of custom motion work for Steam & Discord
               profiles.
             </p>
           </div>
           <a
             href="/order"
-            className="inline-flex items-center justify-center rounded-2xl border border-[var(--border)] px-5 py-2 text-sm font-medium transition hover:bg-white/5"
+            className="inline-flex w-full items-center justify-center rounded-2xl border border-[var(--border)] px-5 py-2 text-sm font-medium transition hover:bg-white/5 sm:w-auto"
           >
             Order
           </a>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[var(--border)] bg-black/20 p-4 text-sm text-[var(--muted)]">
+        <div className="mt-5 rounded-2xl border border-[var(--border)] bg-black/20 p-4 text-xs leading-relaxed text-[var(--muted)] sm:mt-6 sm:text-sm">
           <p>
-            These pieces were created as one-of-a-kind commissions. They are
-            not for sale and exist here to demonstrate style, quality, and
-            creative range.
+            A curated showcase of custom motion work for Steam & Discord
+            profiles.
           </p>
           <p className="mt-3">
-            Looking for ready-to-use assets? Visit the{" "}
+            Not for sale. Want ready-to-use assets? Visit the{" "}
             <a
               href="/shop"
-              className="text-[var(--text)] underline decoration-white/20 underline-offset-4 hover:text-[var(--gold)]"
+              className="font-medium text-[var(--text)] underline decoration-white/20 underline-offset-4 hover:text-[var(--gold)]"
             >
               Shop
             </a>
-            . Want something made specifically for you?{" "}
+            . Need something custom? Place an{" "}
             <a
               href="/order"
-              className="text-[var(--text)] underline decoration-white/20 underline-offset-4 hover:text-[var(--gold)]"
+              className="font-medium text-[var(--text)] underline decoration-white/20 underline-offset-4 hover:text-[var(--gold)]"
             >
               Order
-            </a>{" "}
-            a custom animation.
+            </a>
+            .
           </p>
         </div>
 

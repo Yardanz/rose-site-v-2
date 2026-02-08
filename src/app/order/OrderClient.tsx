@@ -21,8 +21,8 @@ type OrderClientProps = {
 // TODO: place payment icons into public/payment/{card,paypal,usdt}.webp
 const paymentMethods = [
   { label: "Card", src: "/payment/card.webp" },
-  { label: "PayPal", src: "/payment/paypal.webp" },
-  { label: "USDT", src: "/payment/usdt.webp" },
+  { label: "Apple Pay", src: "/payment/none.webp" },
+  { label: "USDT", src: "/payment/none.webp" },
 ];
 
 export default function OrderClient({

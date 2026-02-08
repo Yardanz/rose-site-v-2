@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import WorkCard from "@/components/WorkCard";
 import HowItWorks from "@/components/HowItWorks";
 import { works } from "@/data/works";
@@ -92,44 +91,27 @@ export default function HomePage() {
 
       {/* ABOUT TEASER */}
       <section className="mt-16 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-10">
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
-          <div className="flex items-start gap-5">
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-black/30 shadow-[0_0_18px_rgba(0,0,0,0.35)] transition hover:border-[var(--gold)]/40">
-              {/* TODO: place logo at public/about/logo.webp */}
-              {/* animated webp */}
-              <Image
-                src="/about/logo.webp"
-                alt="Designer logo"
-                width={120}
-                height={120}
-                unoptimized
-                className="h-full w-full object-contain"
-              />
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <h2 className="mt-2 text-2xl font-semibold">Meet the designer</h2>
-            <p className="mt-3 max-w-2xl text-sm text-[var(--muted)]">
-              I animate your existing artwork into clean, premium loops for
-              Steam & Discord. Clear communication, fast iterations, formats
-              ready for profile use.
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center rounded-2xl px-6 py-3 text-sm font-medium transition hover:opacity-90"
-                style={{ background: "var(--gold)", color: "var(--bg)" }}
-              >
-                About me
-              </Link>
-              <Link
-                href="/order"
-                className="inline-flex items-center justify-center rounded-2xl border border-[var(--border)] px-6 py-3 text-sm font-medium transition hover:bg-white/5"
-              >
-                Order
-              </Link>
-            </div>
+        <div className="max-w-3xl">
+          <h2 className="text-2xl font-semibold">Meet the designer</h2>
+          <p className="mt-4 text-sm text-[var(--muted)]">
+            I turn existing artwork into clean, premium motion loops for Steam &
+            Discord. Clear communication, fast iterations, and formats ready for
+            profile use.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center rounded-2xl px-6 py-3 text-sm font-medium transition hover:opacity-90"
+              style={{ background: "var(--gold)", color: "var(--bg)" }}
+            >
+              About me
+            </Link>
+            <Link
+              href="/order"
+              className="inline-flex items-center justify-center rounded-2xl border border-[var(--border)] px-6 py-3 text-sm font-medium transition hover:bg-white/5"
+            >
+              Order
+            </Link>
           </div>
         </div>
       </section>

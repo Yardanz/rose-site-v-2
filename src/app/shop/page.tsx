@@ -81,11 +81,13 @@ function ShopCard({
   previewVideo?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(true);
   const [hoverKey, setHoverKey] = useState(0);
   const [videoReady, setVideoReady] = useState(false);
+  const isAlways = true;
 
   const handleMouseEnter = () => {
+    if (isAlways) return;
     setIsHovered(true);
     setVideoReady(false);
     setHoverKey((prev) => prev + 1);
@@ -96,6 +98,7 @@ function ShopCard({
   };
 
   const handleMouseLeave = () => {
+    if (isAlways) return;
     setIsHovered(false);
     setVideoReady(false);
     if (videoRef.current) {
@@ -106,7 +109,7 @@ function ShopCard({
 
   const handleCanPlay = () => {
     if (!videoRef.current) return;
-    if (isHovered) {
+    if (isAlways || isHovered) {
       setVideoReady(true);
       videoRef.current.play().catch(() => undefined);
     }
@@ -136,12 +139,13 @@ function ShopCard({
             key={hoverKey}
             ref={videoRef}
             className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-200 ease-out ${
-              isHovered ? "opacity-100" : "opacity-0"
+              isAlways || isHovered ? "opacity-100" : "opacity-0"
             }`}
             muted
             loop
             playsInline
             preload="metadata"
+            autoPlay={isAlways}
             controls={false}
             controlsList="nodownload noremoteplayback"
             onContextMenu={(event) => event.preventDefault()}
@@ -221,26 +225,23 @@ export default function ShopPage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-16">
       <section>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">Shop</h1>
-            <p className="mt-2 text-sm text-[var(--muted)]">
+            <h1 className="text-2xl font-semibold sm:text-3xl">Shop</h1>
+            <p className="mt-1 max-w-[28rem] text-xs text-[var(--muted)]/80 sm:mt-2 sm:text-sm sm:text-[var(--muted)]">
               Ready-to-use motion assets with fixed pricing.
             </p>
           </div>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[var(--border)] bg-black/20 p-4 text-sm text-[var(--muted)]">
-          <p>
-            These are reusable packs with a fixed price. Instant delivery after
-            purchase will be added soon.
-          </p>
+        <div className="mt-5 rounded-2xl border border-[var(--border)] bg-black/20 p-4 text-xs leading-relaxed text-[var(--muted)] sm:mt-6 sm:text-sm">
+          <p>Ready-to-use motion assets with fixed pricing.</p>
           <p className="mt-3">
-            Until checkout is available, you can browse the catalog and request
+            Checkout will be added soon. For now, browse the catalog and request
             a pack via{" "}
             <a
               href="/order"
-              className="text-[var(--text)] underline decoration-white/20 underline-offset-4 hover:text-[var(--gold)]"
+              className="font-medium text-[var(--text)] underline decoration-white/20 underline-offset-4 hover:text-[var(--gold)]"
             >
               Order
             </a>

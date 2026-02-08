@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 type WorkCardProps = {
   slug: string;
@@ -18,17 +18,12 @@ export default function WorkCard({
   type,
   tags,
   previewSrc,
-  mode = "hover",
+  mode = "always",
 }: WorkCardProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [hoverKey, setHoverKey] = useState(0);
   const [videoReady, setVideoReady] = useState(false);
-
-  const thumbnailSrc = useMemo(() => {
-    if (!previewSrc) return undefined;
-    return previewSrc.replace(/\.(mp4|webm)$/i, ".jpg");
-  }, [previewSrc]);
 
   const handleMouseEnter = () => {
     if (mode !== "hover") return;
@@ -69,20 +64,7 @@ export default function WorkCard({
     >
       <div className="relative overflow-hidden rounded-xl border border-[var(--border)]">
         <div className="relative aspect-[9/16] bg-black/20">
-          {thumbnailSrc ? (
-            <img
-              src={thumbnailSrc}
-              alt={`${title} preview`}
-              className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-200 ease-out ${
-                mode === "always" || (isHovered && videoReady)
-                  ? "opacity-0"
-                  : "opacity-100"
-              }`}
-              draggable={false}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-black/30" />
-          )}
+          <div className="absolute inset-0 bg-black/30" />
         </div>
         {previewSrc ? (
           <video
@@ -101,7 +83,6 @@ export default function WorkCard({
             onContextMenu={(event) => event.preventDefault()}
             onCanPlay={handleCanPlay}
             onLoadedData={handleCanPlay}
-            poster={thumbnailSrc}
             src={previewSrc}
           />
         ) : null}

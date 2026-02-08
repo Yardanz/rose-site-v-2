@@ -19,7 +19,7 @@ const socialLinks = [
     href: "https://example.com",
   },
   {
-    src: "/about/social-4.webp",
+    src: "/about/none.webp",
     label: "Open social link 4",
     href: "https://www.youtube.com/channel/UCb_DujveDEglvix42vYlGRw",
   },
@@ -42,33 +42,22 @@ export default function AboutPage() {
       <section className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-10">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-black/20 sm:h-24 sm:w-24">
-                {/* animated webp */}
-                <Image
-                  src="/about/logo.webp"
-                  alt="R.A. Design logo"
-                  width={120}
-                  height={120}
-                  unoptimized
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wide text-[var(--muted)]">
-                  R.A. Design
-                </p>
-                <h1 className="mt-2 text-3xl font-semibold tracking-wide text-[var(--gold)]/90">
-                  About me
-                </h1>
-              </div>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-[var(--muted)]">
+                R.A. Design
+              </p>
+              <h1 className="mt-2 text-3xl font-semibold tracking-wide text-[var(--gold)]/90">
+                About me
+              </h1>
             </div>
 
             <p className="text-sm leading-relaxed text-white/80 md:text-base md:leading-relaxed">
               I&apos;m a motion designer focused on animated avatars and banners
-              for Steam & Discord. I work with your existing artwork and turn it
-              into clean, premium loops. Clear communication, fast iterations,
-              and formats ready for profile use.
+              for Steam & Discord.
+              <br />
+              <br />I work with your existing artwork and turn it into clean,
+              premium loops. You get clear communication, fast iterations, and
+              formats fully ready for profile use.
             </p>
 
             <div className="rounded-2xl border border-white/15 bg-black/15 p-5 shadow-[inset_0_0_12px_rgba(216,179,86,0.08)]">
@@ -101,7 +90,7 @@ export default function AboutPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={item.label}
-                    className="group flex items-center justify-center rounded-2xl border border-[var(--border)] bg-black/20 p-2 shadow-[inset_0_0_12px_rgba(0,0,0,0.35)] transition hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)] cursor-pointer"
+                    className="group flex items-center justify-center rounded-2xl border border-[var(--border)] bg-black/20 p-2 shadow-[inset_0_0_12px_rgba(0,0,0,0.35)] transition duration-200 ease-out hover:-translate-y-0.5 hover:border-white/25 hover:shadow-[0_0_18px_rgba(216,179,86,0.12)] active:translate-y-0 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] motion-reduce:transition-none cursor-pointer"
                   >
                     {/* animated webp */}
                     <Image
@@ -110,7 +99,7 @@ export default function AboutPage() {
                       width={80}
                       height={80}
                       unoptimized
-                      className="h-16 w-16 object-contain sm:h-[68px] sm:w-[68px]"
+                      className="h-16 w-16 object-contain transition duration-200 ease-out group-hover:scale-[1.02] group-hover:brightness-110 group-hover:contrast-110 group-active:scale-[0.99] motion-reduce:transition-none sm:h-[68px] sm:w-[68px]"
                     />
                   </a>
                 ))}

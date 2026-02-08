@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ShopItem } from "@/data/shop";
 
 type ShopDetailClientProps = {
@@ -28,6 +28,15 @@ const licenseNotes = [
 ];
 
 export default function ShopDetailClient({ item }: ShopDetailClientProps) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoReady, setVideoReady] = useState(false);
+
+  const handleCanPlay = () => {
+    if (!videoRef.current) return;
+    setVideoReady(true);
+    videoRef.current.play().catch(() => undefined);
+  };
+
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-16">
       <div className="mb-8">
@@ -42,38 +51,48 @@ export default function ShopDetailClient({ item }: ShopDetailClientProps) {
       <section className="overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)]">
         <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:p-10">
           <div className="relative flex max-h-[70vh] items-center justify-center rounded-2xl border border-[var(--border)] bg-black/30 p-4">
-            <div className="aspect-[9/16] w-full max-h-[70vh] max-w-[520px] overflow-hidden rounded-2xl border border-[var(--border)] bg-black/20">
+            <div className="relative aspect-[9/16] w-full max-h-[70vh] max-w-[520px] overflow-hidden rounded-2xl border border-[var(--border)] bg-black/20">
+              <img
+                src={item.thumbnail}
+                alt={`${item.title} preview`}
+                className={`absolute inset-0 h-full w-full object-contain object-center transition-opacity duration-200 ease-out ${
+                  videoReady ? "opacity-0" : "opacity-100"
+                }`}
+                draggable={false}
+                onDragStart={(event) => event.preventDefault()}
+                onContextMenu={(event) => event.preventDefault()}
+              />
               {item.previewVideo ? (
                 <video
-                  className="h-full w-full object-contain object-center"
+                  ref={videoRef}
+                  className="absolute inset-0 h-full w-full object-contain object-center transition-opacity duration-200 ease-out"
                   muted
                   loop
                   playsInline
                   preload="metadata"
-                  autoPlay
                   poster={item.thumbnail}
-                >
-                  <source src={item.previewVideo} />
-                </video>
-              ) : (
-                <img
-                  src={item.thumbnail}
-                  alt={`${item.title} preview`}
-                  className="h-full w-full object-contain object-center"
+                  controls={false}
+                  controlsList="nodownload noremoteplayback"
+                  onContextMenu={(event) => event.preventDefault()}
+                  onCanPlay={handleCanPlay}
+                  onLoadedData={handleCanPlay}
+                  src={item.previewVideo}
                 />
-              )}
+              ) : null}
             </div>
           </div>
 
           <div className="flex flex-col gap-6 md:sticky md:top-24 md:self-start">
             <div>
-              <h1 className="mt-3 text-3xl font-semibold md:text-4xl">
+              <h1 className="mt-3 text-2xl font-semibold sm:text-3xl md:text-4xl">
                 {item.title}
               </h1>
-              <p className="mt-3 text-lg font-semibold text-[var(--text)]">
+              <p className="mt-2 text-base font-semibold text-[var(--text)] sm:mt-3 sm:text-lg">
                 {item.price}
               </p>
-              <p className="mt-4 text-[var(--muted)]">{item.description}</p>
+              <p className="mt-3 text-sm text-[var(--muted)] sm:mt-4 sm:text-base">
+                {item.description}
+              </p>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -124,14 +143,14 @@ export default function ShopDetailClient({ item }: ShopDetailClientProps) {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href={`/order?product=${item.slug}`}
-                className="inline-flex items-center justify-center rounded-2xl px-6 py-3 text-sm font-medium transition hover:opacity-90"
+                className="inline-flex w-full items-center justify-center rounded-2xl px-6 py-3 text-sm font-medium transition hover:opacity-90 sm:w-auto"
                 style={{ background: "var(--gold)", color: "var(--bg)" }}
               >
                 Order this animation
               </Link>
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center rounded-2xl border border-[var(--border)] px-6 py-3 text-sm font-medium transition hover:bg-white/5"
+                className="inline-flex w-full items-center justify-center rounded-2xl border border-[var(--border)] px-6 py-3 text-sm font-medium transition hover:bg-white/5 sm:w-auto"
               >
                 Back to shop
               </Link>

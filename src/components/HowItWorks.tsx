@@ -74,13 +74,15 @@ export default function HowItWorks() {
             ))}
           </ul>
 
-          <a
-            href="/order"
-            className="inline-flex items-center justify-center rounded-2xl px-6 py-3 text-sm font-medium transition hover:opacity-90"
-            style={{ background: "var(--gold)", color: "var(--bg)" }}
-          >
-            Order animation
-          </a>
+          <div className="flex justify-center sm:justify-start">
+            <a
+              href="/order"
+              className="inline-flex items-center justify-center rounded-2xl px-6 py-3 text-sm font-medium transition hover:opacity-90"
+              style={{ background: "var(--gold)", color: "var(--bg)" }}
+            >
+              Order animation
+            </a>
+          </div>
         </div>
 
         <div className="space-y-4">
